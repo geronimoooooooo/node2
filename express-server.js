@@ -4,7 +4,7 @@ import express from "express";
 //const express = require('express')
 import path from "path";
 import { fileURLToPath } from "url";
-import { bros, routeDel } from "./bros.js";
+import { bros, routeDel } from "./route1.js";
 import { offers, routeGetOfferList, adder } from "./importer/LibRequireHelper.js";
 import * as dotenv from "dotenv";
 import fs from "fs"

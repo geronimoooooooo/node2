@@ -38,6 +38,8 @@ export function routeGetOfferList(req, res) {
       wantGold: 50002,
     }
   ];
+
+  
   res.json(offers);
   // res.send(offers);
 }

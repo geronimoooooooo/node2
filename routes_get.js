@@ -1,4 +1,12 @@
 
+import path from "path";
+// const path  = ('path');
+import { fileURLToPath } from "url";
+// const fileURLToPath = require('url');
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 /**
  * The hello function logs a message to the console.
  * @param req - The `req` parameter is an object that represents the HTTP request made by the client. It contains
@@ -18,4 +26,11 @@ export function xxx(req, res){
   }
 
 
+export function index3(req,res){
+    console.log("this is index3");
+    let file = path.join(__dirname + '/index3.html');
+    res.sendFile(file);
+}
 
+
+// exports = {hello};

@@ -1,7 +1,7 @@
 {
   "name": "node1",
   "version": "1.0.0",
-  "description": "some stuff",
+  "description": "some node express stuff",
   "main": "index.js", 
     "type": "module",
   "scripts": {
