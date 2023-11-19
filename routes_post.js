@@ -18,10 +18,12 @@ routerVar.get('/another-route' , (req , res)=>{
 
 
 export function getDataFromForm(req, res){
-    const {food} = req.body;
+    const {food} = req.body; //form field has name="food"
+    const {pet} = req.body;
     const sel = req.body.sel;
     console.log(sel);
-    console.log(req.body);
+    console.log(pet);
+    console.log(req.body); //req.body has all form elements as json
     // req.body.field = Boolean(req.body.field)
     // object = {
     //     first: req.body.first_name ? true : false,
@@ -33,7 +35,7 @@ export function getDataFromForm(req, res){
         last:req.body.last_name,
         selector: req.body.sel        
     };  
-    console.log(JSON.stringify(form) + "," +form.first);  
+    console.log(JSON.stringify(form) + ", " +form.first+ ", "+ JSON.stringify(req.body));  
     res.send(form);
     return
     // res.end(JSON.stringify(response));  
