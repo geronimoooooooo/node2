@@ -1,6 +1,7 @@
 
 // const router = require('express').Router()
 import  express, { response } from "express";
+import { offers } from "./importer/LibRequireHelper.js";
 
 export const routerVar = express.Router();
 
@@ -8,7 +9,6 @@ export const routerVar = express.Router();
 routerVar.get('/' , (req , res)=>{
     // router code here
 })
-
 
 routerVar.get('/another-route' , (req , res)=>{
     console.log("another-route");
@@ -37,6 +37,18 @@ export function getDataFromForm(req, res){
     };  
     console.log(JSON.stringify(form) + ", " +form.first+ ", "+ JSON.stringify(req.body));  
     res.send(form);
+    // res.send({
+    //     'user_id': user_id,
+    //     'token': token,
+    //     'geo': geo
+    //   });
+
+    offers.push({
+        'id':req.body.first_name,
+        'name':req.body.last_name,
+        'price':req.body.price
+    });
+    console.log(offers);
     return
     // res.end(JSON.stringify(response));  
     if(food)

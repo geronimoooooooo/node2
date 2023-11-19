@@ -22,6 +22,8 @@ import { getDataFromForm, routerVar } from "./routes_post.js";
 // const routes_post = require('./routes_post.js');
 
 import {router2} from './login.js';
+
+import { offers, routeGetOfferList, adder } from "./importer/LibRequireHelper.js";
 //#endregion
 
 const app = express()
@@ -46,6 +48,38 @@ var certificate = fs.readFileSync('sslcert/certificate.crt', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 var httpsServer = https.createServer(credentials, app);
 //#endregion
+
+
+
+app.get("/main", function (req, res) {
+  var name = "hello";
+  name = path.join(__dirname+'/index2.html');
+  console.log(name);
+  res.sendFile(path.join(__dirname+'/index2.html'));
+  // res.render(__dirname + "index.html", { name: name });
+});
+
+app.get("/form", function (req, res) {    
+  res.sendFile(path.join(__dirname+'/form.html'));
+  // res.render(__dirname + "index.html", { name: name });
+});
+
+/* /game?name=oddball*/
+app.get("/game", function (req, res) {
+  var name = req.query.name;
+  console.log(req.query.name);
+  res.send(`this is a name: ${name} !`);
+  //res.send("das ist ein Test: ${req.body.name } ")
+  //res.render('the_template', { name: req.body.name });
+});
+
+// With middleware
+app.use('/a1', function (req, res, next) {
+  console.log("/");
+  res.json(offers)
+  next();
+})
+
 
 app.get('/xxx/x', xxx);
 app.get('/hello', hello);
