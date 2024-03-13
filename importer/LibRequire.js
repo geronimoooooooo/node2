@@ -5,11 +5,8 @@ const msg = require('./msg');
 msg.sayThanks();
 console.log(msg.sayHello);
 
-libRequireHelper.
 
-
-
-console.log("text "+libRequireHelper.PI);
+console.log("text "+ libRequireHelper.PI);
 libRequireHelper
 
 const result = libRequireHelper.add(1,10);

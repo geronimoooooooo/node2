@@ -8,27 +8,22 @@ function sayBye(user) {
   console.log(`Bye, ${user}!`);
 }
 
-function hello() {
-  console.log("hello world");
-}
-
 function add(x, y) {
   return x + y
 }
 const PI = 3.14159;
 
-var offers =[{"id":0,"name":"Item 0","price":"$0"},{"id":1,"name":"Item 1","price":"$1"},{"id":2,"name":"Item2","price":"$222"}]
+export var offers =[{"id":0,"name":"Item 0","price":"$0"},{"id":1,"name":"Item 1","price":"$1"},{"id":2,"name":"Item2","price":"$222"}]
 
-function adder(req, res) {
+export function adder(req, res) {
   const offer = {"id":110,"name":"Item 110","price":"$110"};
   console.log(offer);
   offers.push(offer);
   res.json(offer);
 }
 
-module.exports = {PI, add};//sayHi, add, PI;
-
-function routeGetOfferList(req, res) {
+//exports = { sayHi, add, PI };
+export function routeGetOfferList(req, res) {
   offers = [
     {
       serverOffer: "Venoxis",
