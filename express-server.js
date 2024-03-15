@@ -4,7 +4,7 @@ import express from "express";
 //const express = require('express')
 import path from "path";
 import { fileURLToPath } from "url";
-import { bros, routeDel } from "./route1.js";
+import { bros, routeDel, npvGet } from "./route1.js";
 import { offers, routeGetOfferList, adder } from "./importer/LibRequireHelper.js";
 import * as dotenv from "dotenv";
 import fs from "fs"
@@ -20,7 +20,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const module_helper = import("./helper1.js"); //ruft alles hier drinnen auf
-const app = express();
+const app = express(); 
 //const port = 3000;
 
 app.use(express.json()); // for json
@@ -82,10 +82,10 @@ app.get('/add', adder);
 // });
 
 app.route("/a").get((req, res) => {
-  res.send("You have chosen a");
+  res.send("You have chosen aaaaa a");
 });
 
-app.route("/sum").get((req, res) => {});
+
 
 app.post('/form', (req, res) => {
   const first_name = req.body.first_name
@@ -98,11 +98,7 @@ app.post('/form', (req, res) => {
 app.route("/Node").get(function (req, res) {
   res.send("Tutorial on Node");
 });
-
-app.route("/Angular").get(function (req, res) {
-  res.send("Tutorial on Angular");
-});
-
+app.get("/npv", npvGet);
 
 // Listen both http & https ports
 const httpServer = https.createServer(app);

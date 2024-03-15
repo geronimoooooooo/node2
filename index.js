@@ -15,8 +15,10 @@ import { fileURLToPath } from "url";
 import express from "express";
 // const express = require('express');
 
-import { hello, index3, xxx } from "./routes_get.js";
+import { hello, index3} from "./routes_get.js";
 // const routes_get = require('./routes_get.js');
+
+import { bro } from './routes/routes_get.js';
 
 import { getDataFromForm, routerVar } from "./routes_post.js";
 // const routes_post = require('./routes_post.js');
@@ -49,6 +51,9 @@ var credentials = {key: privateKey, cert: certificate};
 var httpsServer = https.createServer(credentials, app);
 //#endregion
 
+app.get('/return/:val', (req, res) => {
+  //https://ispacevm04.researchstudio.at/return/abc54 returniert abc54 im body
+  res.send(req.params.val)});
 
 
 app.get("/main", function (req, res) {
@@ -67,6 +72,7 @@ app.get("/form", function (req, res) {
 /* /game?name=oddball*/
 app.get("/game", function (req, res) {
   var name = req.query.name;
+  name = name.toLowerCase();
   console.log(req.query.name);
   res.send(`this is a name: ${name} !`);
   //res.send("das ist ein Test: ${req.body.name } ")
@@ -81,22 +87,27 @@ app.use('/a1', function (req, res, next) {
 })
 
 
-app.get('/xxx/x', xxx);
+app.get('/bro', bro);
+
 app.get('/hello', hello);
 app.get('/', (req, res) => {  
-  res.json({ success: true })
+  res.send('startseite');
+  //res.json({ success: true })
 })
 app.get('/index3', index3);
-
-// home page route (http://localhost:8080)
-router.get('/', function(req, res) {
-  res.send('im the home page of a router!');
-});
 
 // about page route (http://localhost:8080/about)
 router.get('/about', function(req, res) {
   res.send('im the about page!');
 });
+
+// home page route (http://localhost:8080)
+router.get('/', function(req, res) {
+  res.send('im the home page of a router als weiterleitung!');
+});
+
+
+
 
 // route middleware to validate :name
 router.param('name', function(req, res, next, name) {
@@ -112,11 +123,11 @@ router.param('name', function(req, res, next, name) {
 });
 
 // route with parameters (http://localhost:8080/hello/:name)
-router.get('/hello/:name', function(req, res) {
-  res.send('hello ' + req.name + '!' + req.params.name);
+app.get('/hello/:name/:age', function(req, res) {
+  res.send('hello ' + req.name + '!' + req.params.name + ' '+req.params.age);
 });
 
-routerVar.get('tri',)
+
 
 app.route('/login')
 

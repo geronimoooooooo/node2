@@ -2,16 +2,18 @@
 const lisa=[45,11,22,3,4]
 console.log(lisa.length);
 console.log(lisa.at(0))
-var name ='test'
+let name ='test'
 console.log(`${lisa}:${name}`)
-var there ="";
+let there ="there";
 var acdc = null
+console.log(`${there}`);
 
 function some(){
-    console.log(`name: ${name}`)
+    console.log(`name: ${there}`)
     there = "roc k"
-    var acdc = 11
+    acdc = 11
 }
+
 
 some();
 console.log(there);

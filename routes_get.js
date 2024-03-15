@@ -17,20 +17,16 @@ const __dirname = path.dirname(__filename);
  */
 export function hello(req, res){
     console.log(`this is hello function`);
-    res.send(`hello`);
+    res.send(`hello XY`);
 }
-
-export function xxx(req, res){
-    console.log("xxx");  
-    res.send('xxx!');
-  }
 
 
 export function index3(req,res){
-    console.log("this is index3");
+    console.log("this is function index3");
     let file = path.join(__dirname + '/index3.html');
     res.sendFile(file);
 }
+
 
 
 // exports = {hello};
