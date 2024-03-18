@@ -15,7 +15,8 @@ console.log(sayLib.add(4,15));
 
 
 
-
+let now = new Date();
+console.log( now.toISOString().slice(0,-6)+"Z");
 
 let aa = "value";
 const aMap = new Map();

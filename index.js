@@ -18,7 +18,7 @@ import express from "express";
 import { hello, index3} from "./routes_get.js";
 // const routes_get = require('./routes_get.js');
 
-import { bro } from './routes/routes_get.js';
+import { bro, homeMiddleware } from './routes/routes_get.js';
 
 import { getDataFromForm, routerVar } from "./routes_post.js";
 // const routes_post = require('./routes_post.js');
@@ -55,6 +55,17 @@ app.get('/return/:val', (req, res) => {
   //https://ispacevm04.researchstudio.at/return/abc54 returniert abc54 im body
   res.send(req.params.val)});
 
+  app.use('/home', (req, res, next) => {
+    console.log('A new request received at middleware home ' + new Date().toISOString());
+    next();
+  });
+  app.use('/home', homeMiddleware);
+  
+  app.get('/home', (req, res) => {
+    console.log("logger in app.get home");    
+    res.send('Home Page');
+  });
+  
 
 app.get("/main", function (req, res) {
   var name = "hello";
@@ -106,7 +117,10 @@ router.get('/', function(req, res) {
   res.send('im the home page of a router als weiterleitung!');
 });
 
-
+// For invalid routes
+app.get('*', (req, res) => {
+  res.send('404! This is an invalid URL.');
+});
 
 
 // route middleware to validate :name

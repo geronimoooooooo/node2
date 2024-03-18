@@ -4,7 +4,8 @@ import express from "express";
 //const express = require('express')
 import path from "path";
 import { fileURLToPath } from "url";
-import { bros, routeDel, npvGet } from "./route1.js";
+import { bros, routeDel} from "./route1.js";
+import {npvGet, npvGetAxios, getTime} from "./routes/routes_get.js"
 import { offers, routeGetOfferList, adder } from "./importer/LibRequireHelper.js";
 import * as dotenv from "dotenv";
 import fs from "fs"
@@ -99,6 +100,8 @@ app.route("/Node").get(function (req, res) {
   res.send("Tutorial on Node");
 });
 app.get("/npv", npvGet);
+app.get("/npv2", npvGetAxios);
+app.get("/time", getTime);
 
 // Listen both http & https ports
 const httpServer = https.createServer(app);
