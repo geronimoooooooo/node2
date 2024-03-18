@@ -46,6 +46,29 @@
             Third checkbox
           </label>
         </div>
+
+radios
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="rad1" value="op1" checked>
+          <label class="form-check-label" for="rad1">
+            Default radio
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="rad2" value="op2">
+          <label class="form-check-label" for="rad2">
+            Second default radio
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="rad3" value="op3" disabled>
+          <label class="form-check-label" for="rad3">
+            Disabled radio
+          </label>
+        </div>
+
+
+
         <div class="select pt-5">
             <label id="sel_label" for="sel">Selector</label>
             <div class="input-group mb-3">
@@ -57,13 +80,22 @@
             </div>
         </div>
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" name="pet" value="dog" id="dog">
+          <input type="checkbox" class="form-check-input" name="check_dog" value="dog" id="dog">
           <label class="form-check-label" for="dog">Dog</label>
       </div>
       <div class="form-check mt-2">
-          <input type="checkbox" class="form-check-input" name="pet" value="cat" id="cat" checked>
+          <input type="checkbox" class="form-check-input" name="check_cat" value="cat" id="cat" checked>
           <label class="form-check-label" for="cat">Cat</label>
       </div>
+      eat stuff:
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" name="food" value="meat" id="meat">
+        <label class="form-check-label" for="meat">Meat</label>
+    </div>
+    <div class="form-check mt-2">
+        <input type="checkbox" class="form-check-input" name="food" value="veggi" id="veggi">
+        <label class="form-check-label" for="veggi">Veggi</label>
+    </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

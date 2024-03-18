@@ -6,25 +6,36 @@ import { offers } from "./importer/LibRequireHelper.js";
 export const routerVar = express.Router();
 
 
-routerVar.get('/' , (req , res)=>{
-    // router code here
-})
-
-routerVar.get('/another-route' , (req , res)=>{
-    console.log("another-route");
-})
-
 // module.exports  = router
 
-
 export function getDataFromForm(req, res){
-    const {food} = req.body; //form field has name="food"
-    const {pet} = req.body;
+
+    console.log('this is form: '+ JSON.stringify(req.body));
+    res.send('this is form '+ JSON.stringify(req.body));
+}
+
+export function getDataFromForm2(req, res){
+    const {food} = req.body; //form field has name="food"    
     const sel = req.body.sel;
-    console.log(sel);
-    console.log(pet);
-    console.log(req.body); //req.body has all form elements as json
+    const rad = req.body.exampleRadios;
+        
+    console.log(sel);    
+    if(food)
+    if (food.includes('meat')){
+        console.log("you got dog!");
+    }
+    console.log("req.body"+ req.body); //req.body has all form elements as json, aber mit String steht nur Obj Obj
+    // console.log(req.body); //req.body has all form elements as json
     // req.body.field = Boolean(req.body.field)
+
+    let check_dog = Boolean(req.body.check_dog);
+    if(check_dog)
+    console.log( "req.body.checkbox1: "+req.body.check_dog);
+
+    let check_cat = Boolean(req.body.check_cat);
+    if(check_cat)    
+    console.log( "req.body.cat: "+req.body.check_cat);
+    
     // object = {
     //     first: req.body.first_name ? true : false,
     //     second: req.body.2 ? true : false,
@@ -36,7 +47,7 @@ export function getDataFromForm(req, res){
         selector: req.body.sel        
     };  
     console.log(JSON.stringify(form) + ", " +form.first+ ", "+ JSON.stringify(req.body));  
-    res.send(form);
+    
     // res.send({
     //     'user_id': user_id,
     //     'token': token,
@@ -48,20 +59,24 @@ export function getDataFromForm(req, res){
         'name':req.body.last_name,
         'price':req.body.price
     });
-    console.log(offers);
-    return
+    // console.log(offers);
+  
     // res.end(JSON.stringify(response));  
-    if(food)
-    food.forEach((item) => {
-        console.log(item);
-    });
+    // if(pet)
+    // pet.forEach((item) => {
+    //     console.log(item);
+    // });
 
-    const listFood = req.body.food;
-    console.log(listFood);
-    const radio = req.body.list_radio;
+    const foodlist = req.body.food;
+    console.log(foodlist);
+    let radio = req.body.list_radio;
+    console.log(radio);
+    radio = req.body.exampleRadios;
     console.log(radio);
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
+    res.send(form);
+    return
     
     const dairy = req.body.dairy_name === 'on';
     

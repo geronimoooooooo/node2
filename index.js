@@ -20,7 +20,7 @@ import { hello, index3} from "./routes_get.js";
 
 import { bro, homeMiddleware } from './routes/routes_get.js';
 
-import { getDataFromForm, routerVar } from "./routes_post.js";
+import { getDataFromForm2, routerVar } from "./routes_post.js";
 // const routes_post = require('./routes_post.js');
 
 import {router2} from './login.js';
@@ -165,7 +165,7 @@ app.route('/login')
 app.use('/a', router);
 app.use('/user', router2);
 
-app.post('/form', getDataFromForm);
+app.post('/form', getDataFromForm2);
 app.post('/', (req, res) => {
     console.log(req.body)
     res.json({ success: true })
