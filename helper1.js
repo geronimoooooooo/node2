@@ -2,6 +2,19 @@
 const lisa=[45,11,22,3,4]
 console.log(lisa.length);
 console.log(lisa.at(0))
+
+for (let index = 0; index < lisa.length; index++) {
+    const element = lisa[index];
+    console.log(element);
+}
+lisa.forEach(element => {
+    console.log(element);
+});
+
+for(let el of lisa){
+    console.log('lisa: '+el);
+}
+
 let name ='test'
 console.log(`${lisa}:${name}`)
 let there ="there";
