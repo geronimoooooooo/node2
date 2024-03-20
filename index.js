@@ -18,12 +18,10 @@ import express from "express";
 import { hello, index3} from "./routes_get.js";
 // const routes_get = require('./routes_get.js');
 
-import { bro, homeMiddleware } from './routes/routes_get.js';
+import { router2, bro, homeMiddleware } from './routes/routes_get.js';
 
 import { getDataFromForm2, routerVar } from "./routes_post.js";
 // const routes_post = require('./routes_post.js');
-
-import {router2} from './login.js';
 
 import { offers, routeGetOfferList, adder } from "./importer/LibRequireHelper.js";
 //#endregion
@@ -133,17 +131,17 @@ app.get('/', (req, res) => {
 app.get('/index3', index3);
 
 // about page route (http://localhost:8080/about)
-router.get('/about', function(req, res) {
-  res.send('im the about page!');
+router.get('/', function(req, res, next) {
+  console.log("router.get /");
+  // res.send('im the about page!');
+  next();
 });
 
 // home page route (http://localhost:8080)
 router.get('/', function(req, res) {
+  console.log("router.get /2");
   res.send('im the home page of a router als weiterleitung!');
 });
-
-
-
 
 // route middleware to validate :name
 router.param('name', function(req, res, next, name) {
@@ -163,8 +161,6 @@ app.get('/hello/:name/:age', function(req, res) {
   res.send('hello ' + req.name + '!' + req.params.name + ' '+req.params.age);
 });
 
-
-
 app.route('/login')
 
   // show the form (GET http://localhost:8080/login)
@@ -179,8 +175,8 @@ app.route('/login')
   });
 
 // apply the routes to our application
-app.use('/a', router);
-app.use('/user', router2);
+app.use('/a', router); //calls 2 weitere routes von "router", die "/"" sind
+app.use('/user', router2); //user/afk/:name/:class 
 
 app.post('/form', getDataFromForm2);
 app.post('/', (req, res) => {
@@ -208,8 +204,12 @@ app.get('*', (req, res) => {
   res.send('404! This is an invalid URL.');
 });
 
-httpsServer.listen(process.env.PORTHTTPS, () => {
-        console.log(new Date().toISOString()+` https server running on port: ${process.env.PORTHTTPS}`);
+httpsServer.listen(process.env.PORTHTTPS, (err) => {
+  if(err){
+    console.log(new Date().toISOString()+` https server could not start on port: ${process.env.PORTHTTPS}`);
+  }else{
+    console.log(new Date().toISOString()+` https server running on port: ${process.env.PORTHTTPS}`);
+  }
     });
 
 

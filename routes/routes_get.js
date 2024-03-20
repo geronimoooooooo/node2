@@ -1,11 +1,12 @@
 
 // const https = require('https');
 import https from "https"
+import express from "express";
 import xml from 'xml'
 import axios from "axios"
 // var xml = require('xml');
 // var xmlString = xml(xmlObject, options);
-
+export const router2 = express.Router();
 
 export function bro(req, res){
     let sco = 'science';
@@ -89,3 +90,17 @@ export function npvGet(req, res2){
     console.log('Error: ', err.message);
 });
 }
+
+
+// GET /user/signin
+router2.get('/signin', (req, res) => {
+    console.log("signin");    
+    res.send("this is signin");
+});
+
+//user/afk/:name/:class 
+router2.get('/afk/:name/:class', (req, res) => {
+    console.log("afk");    
+    // res.send("this is afk");
+    return res.json({ name: req.params.name, id: req.params.class });
+});
