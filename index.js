@@ -73,10 +73,12 @@ app.get('/return/:val', (req, res) => {
   
 
 app.get("/main", function (req, res) {
-  var name = "hello";
-  name = path.join(__dirname+'/index2.html');
-  console.log(name);
+  // var name = "hello";
+  // name = path.join(__dirname+'/index2.html');
+  console.log("/main");
+  // res.sendFile(path.join(__dirname+'/form.html'));
   res.sendFile(path.join(__dirname+'/index2.html'));
+
   // res.render(__dirname + "index.html", { name: name });
 });
 
@@ -87,19 +89,37 @@ app.get("/form", function (req, res) {
 
 /* /game?name=oddball*/
 app.get("/game", function (req, res) {
-  var name = req.query.name;
-  name = name.toLowerCase();
-  console.log(req.query.name);
-  res.send(`this is a name: ${name} !`);
+  //if no name given, req.q.name is undefined and falsy
+  if(req.query.name){ 
+    let name = req.query.name;  
+    console.log(req.query.name + " is " +typeof req.query.name);
+    name = name.toLowerCase();
+  }
+  res.send(`this is a name: ${req.query.name} !`);
   //res.send("das ist ein Test: ${req.body.name } ")
   //res.render('the_template', { name: req.body.name });
 });
 
 // With middleware
 app.use('/a1', function (req, res, next) {
-  console.log("/");
+  console.log("/a1");
   res.json(offers)
-  next();
+  // next(); //comment this line out, to avoid error
+  //error comes because index2.html calls this a1 to get data to fill table and finally
+  // get('*') is being called
+  /*
+  Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.setHeader (node:_http_outgoing:645:11)
+    at ServerResponse.header (C:\web\node1\node_modules\express\lib\response.js:794:10)
+    at ServerResponse.send (C:\web\node1\node_modules\express\lib\response.js:174:12)
+    at file:///C:/web/node1/index.js:193:7
+    at Layer.handle [as handle_request] (C:\web\node1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\web\node1\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\web\node1\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\web\node1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\web\node1\node_modules\express\lib\router\index.js:284:15
+  */
 })
 
 
@@ -122,10 +142,7 @@ router.get('/', function(req, res) {
   res.send('im the home page of a router als weiterleitung!');
 });
 
-// For invalid routes
-app.get('*', (req, res) => {
-  res.send('404! This is an invalid URL.');
-});
+
 
 
 // route middleware to validate :name
@@ -183,8 +200,16 @@ app.post('/api/users', function(req, res) {
   });
 });
 
+// For invalid routes
+app.get('*', (req, res) => {
+  console.log("*");
+  // res.status(404).sendFile(path.join(__dirname+'/form.html'));
+  // res.sendFile(path.join(__dirname+'/form.html'));
+  res.send('404! This is an invalid URL.');
+});
+
 httpsServer.listen(process.env.PORTHTTPS, () => {
-        console.log(`https server running on port: ${process.env.PORTHTTPS}`);
+        console.log(new Date().toISOString()+` https server running on port: ${process.env.PORTHTTPS}`);
     });
 
 
